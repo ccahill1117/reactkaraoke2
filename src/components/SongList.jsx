@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { restartSong, changeSong } from './../actions';
 
+
+
 const SongList = ({ dispatch, songList }) => {
   return (
+
+
     <div>
       <em>Or select from our list:</em>
       {Object.keys(songList).map(songId => {

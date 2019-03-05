@@ -52,7 +52,7 @@ export function fetchSongId(title) {
   };
 }
 
-export function fetchLyrics( title, artist, musicMatchId, localSongId, dispatch) {
+export function fetchLyrics(title, artist, musicMatchId, localSongId, dispatch) {
   return fetch('http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=' + musicMatchId + '&apikey=948bc79fa0d943a6c2f40f392a29b8f7').then(
     response => response.json(),
     error => console.log('An error occurred.', error)
@@ -60,7 +60,7 @@ export function fetchLyrics( title, artist, musicMatchId, localSongId, dispatch)
     if (json.message.body.lyrics) {
       let lyrics = json.message.body.lyrics.lyrics_body;
       lyrics = lyrics.replace('"', '');
-      const songArray = lyrics.split(/\n/g).filter(entry => entry!="");
+      const songArray = lyrics.split(/\n/g).filter(entry => entry!='');
       dispatch(receiveSong(title, artist, localSongId, songArray));
       dispatch(changeSong(localSongId));
     } else {

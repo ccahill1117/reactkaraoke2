@@ -3,7 +3,7 @@ import { fetchSongId } from './../actions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-function SongSearch({ dispatch }){
+function SongSearch({ dispatch, songList }){
   let input;
   return (
     <div>
@@ -17,6 +17,7 @@ function SongSearch({ dispatch }){
         console.log(input.value.trim());
         //...instead of these console.log()s....
         input.value = '';
+        console.table(songList);
       }}>
         <input placeholder="Song Title" ref={node => {
           input = node;
@@ -27,8 +28,14 @@ function SongSearch({ dispatch }){
   );
 }
 
+const mapStateToProps = state => {
+  return {
+    songList: state.songsById
+  };
+};
+
 SongSearch.propTypes = {
   dispatch: PropTypes.func,
 };
 
-export default connect()(SongSearch);
+export default connect(mapStateToProps)(SongSearch);

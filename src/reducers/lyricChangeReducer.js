@@ -14,6 +14,7 @@ const lyricChangeReducer = (state = initialState.songsById, action) => {
       [action.currentSongId]: newSongsByIdEntry
     });
     return newSongsByIdStateSlice;
+
   case types.RESTART_SONG:
     newSongsByIdEntry = Object.assign({}, state[action.currentSongId], {
       arrayPosition: 0
@@ -39,7 +40,8 @@ const lyricChangeReducer = (state = initialState.songsById, action) => {
       isFetching: false,
       receivedAt: action.receivedAt,
       title: action.title,
-      artist: action.songArray,
+      artist: action.artist,
+      songArray: action.songArray,
       arrayPosition: 0,
       songId: action.songId
     });
